@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>----</title>
+</head>
+
+<body onload="setupBlockingCall1()">
+    <!-- <script>
+        console.log("aaa");
+        for(var i=1;++i<5;){
+            setTimeout(()=>{
+                console.log(i);
+            },0);
+        }
+    </script> -->
+    <script type="text/javascript" src="js/testAsync.js"></script>
+
+    <script>
+
+
+        document.addEventListener("DOMContentLoaded", ()=>{console.log("DOMContentLoaded")});
+        document.addEventListener("load", ()=>{console.log("load")});
+        document.addEventListener("beforeunload", ()=>{console.log("beforeunload")});
+        document.addEventListener("unload", ()=>{console.log("unload")});
+
+
+
+        function call1() {
+            console.log("1111");
+            console.log(JSON.stringify(document.e1));
+        }
+        
+        /**
+         * comparism of dom add 
+         * **/
+
+        function testAdd1() {
+            document.e1 = document.getElementById("a999");
+            console.time("add1");
+            for (let i = 0; i < 10000; i++) {
+                const div = document.createElement('div');
+                div.innerHTML = "add1-" + i;
+                document.e1.appendChild(div);
+            }
+            console.timeEnd("add1");  //  57.94384765625 
+        }
+
+        function testAdd2() {
+            document.e1 = document.getElementById("a999");
+            console.time("add2");
+            let html = "";
+            for (let i = 0; i < 10000; i++) {
+                html += "<div>add2-" + i + "</div>";
+            }
+            document.e1.innerHTML += html;
+            console.timeEnd("add2");  // 18ms
+        }
+
+        function testcall1() {
+            document.e1 = document.getElementById("a999");
+            console.time("test1");
+            const times = 20000;
+            let html = ''
+            for (let i = 0; i < times; i++) {
+                html = `<div>${i}${html}</div>`
+            }
+            document.e1.innerHTML += html
+            const div = document.e1.querySelector('div')
+            for (let i = 0; i < times; i++) {
+                div.style.fontSize = (i % 12) + 12 + 'px'
+                div.style.color = i % 2 ? 'red' : 'green'
+                div.style.margin = (i % 12) + 12 + 'px'
+            }
+            console.timeEnd("test1");   //   2000   44ms     /     20000  2434ms
+        }
+
+
+        function testcall2() {
+            document.e1 = document.getElementById("a999");
+
+            console.time("test2");
+            const times = 20000;
+            let html = ''
+            for (let i = 0; i < times; i++) {
+                html = `<div>${i}${html}</div>`
+            }
+            document.e1.innerHTML += html
+            let queue = [] //  创建缓存样式的数组
+            let microTask // 执行修改样式的微任务
+            const st = () => {
+                const div = document.e1.querySelector('div')
+                // 合并样式
+                const style = queue.reduce((acc, cur) => ({ ...acc, ...cur }), {})
+                for (let prop in style) {
+                    div.style[prop] = style[prop]
+                }
+                queue = []
+                microTask = null
+            }
+            const setStyle = (style) => {
+                queue.push(style)
+                // 创建微任务
+                if (!microTask) {
+                    microTask = Promise.resolve().then(st)
+                }
+            }
+            for (let i = 0; i < times; i++) {
+                const style = {
+                    fontSize: (i % 12) + 12 + 'px',
+                    color: i % 2 ? 'red' : 'green',
+                    margin: (i % 12) + 12 + 'px'
+                }
+                setStyle(style)
+            }
+            console.timeEnd("test2");   //  2000   37ms   /     20000  2351ms
+        }
+
+
+    </script>
+
+
+    <div onclick={testcall1()}>
+        click me
+        <h2>h2</h2>
+    </div>
+    <div id="a999">
+    </div>
+
+    <button id="btn1">start a long blocking call</button>
+    <button id="btn2">start a fast call</button>
+    <canvas id="c1" style="width:300px;height:100px;border:1px solid red"></canvas>
+    <button id="btn3">use worker api</button>
+    <button id="btn4">use promise</button>
+
+
+
+</body>
+
+</html>

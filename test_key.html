@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+
+<body style="margin:0;padding:0;">
+
+    <script>
+        document.addEventListener('keydown', logKey);
+        function logKey(e) {
+            // print object in log .... 
+            console.dir(e);
+            // console.log("JSON:"+JSON.stringify(e));
+            // console.log("key:"+e.key+"  ctrlKey:"+e.ctrlKey+"  code:"+e.code);
+            // log.textContent += ` ${e.code}`;
+
+            //
+            el3.scrollIntoView({
+                behavior: 'smooth', // smooth scroll
+                block: 'start' // the upper border of the element will be aligned at the top of the visible part of the window of the scrollable area.
+            })
+
+        }
+
+        function testcall1() {
+            document.dispatchEvent(new Event('focus'));
+            document.dispatchEvent(new KeyboardEvent('keydown',{'key':'ArrowDown','code':'ArrowDown','keyCode':40}));
+        }
+    </script>
+
+
+    <!-- <div>
+        111
+    </div>
+    <p id="log"></p>
+    <button onclick={testcall1()}>
+        click
+    </button> -->
+
+    <!-- <ul>
+        <li class="imgItem" style="background:url(https://img.alicdn.com/tps/i4/TB1MEzaGoY1gK0jSZFCSuwwqXXa.jpg) no-repeat;background-size: cover;" data-spm-anchor-id="a2245.8226687.0.i0.3ef95729JtzRKc"></li>
+        <li class="imgItem" style="background:url(https://img.alicdn.com/tps/i4/TB1Nrm_Gbr1gK0jSZR0SuvP8XXa.jpg) no-repeat;background-size: cover;"></li>
+        <li class="imgItem" style="background:url(https://img.alicdn.com/tps/i4/TB1ZKW8GXY7gK0jSZKzSuuikpXa.jpg) no-repeat;background-size: cover;"></li>
+        <li class="imgItem" style="background:url(https://img.alicdn.com/tps/i4/TB1PLi8GXY7gK0jSZKzSuuikpXa.jpg) no-repeat;background-size: cover;"></li>
+        <li class="imgItem" style="background:url(https://img.alicdn.com/tps/i4/TB1d1HdGbj1gK0jSZFuSuwrHpXa.jpg) no-repeat;background-size: cover;"></li>
+        <li class="imgItem" style="background:url(https://img.alicdn.com/tps/i4/TB1OwrcGa61gK0jSZFlSutDKFXa.jpg) no-repeat;background-size: cover;"></li>
+        <li class="imgItem" style="background:url(https://img.alicdn.com/tps/i4/TB1vnrXGkL0gK0jSZFxSutWHVXa.jpg) no-repeat;background-size: cover;" data-spm-anchor-id="a2245.8226687.0.i1.3ef95729JtzRKc"></li>
+    </ul> -->
+
+    <img id="el1" src="https://img.alicdn.com/tps/i4/TB1MEzaGoY1gK0jSZFCSuwwqXXa.jpg" style="display: block; width:100%;height:auto;border:1px solid red;"/>
+    <img id="el2"src="https://img.alicdn.com/tps/i4/TB1Nrm_Gbr1gK0jSZR0SuvP8XXa.jpg" style="display: block; width:100%;height:auto;border:1px solid red;"/>
+    <img id="el3"src="https://img.alicdn.com/tps/i4/TB1ZKW8GXY7gK0jSZKzSuuikpXa.jpg" style="display: block; width:100%;height:auto;border:1px solid red;"/>
+    <img id="el4"src="https://img.alicdn.com/tps/i4/TB1PLi8GXY7gK0jSZKzSuuikpXa.jpg" style="display: block; width:100%;height:auto;border:1px solid red;"/>
+    <img id="el5"src="https://img.alicdn.com/tps/i4/TB1d1HdGbj1gK0jSZFuSuwrHpXa.jpg" style="display: block; width:100%;height:auto;border:1px solid red;"/>
+    <img id="el6"src="https://img.alicdn.com/tps/i4/TB1OwrcGa61gK0jSZFlSutDKFXa.jpg" style="display: block; width:100%;height:auto;border:1px solid red;"/>
+    <img id="el7"src="https://img.alicdn.com/tps/i4/TB1vnrXGkL0gK0jSZFxSutWHVXa.jpg" style="display: block; width:100%;height:auto;border:1px solid red;"/>
+
+
+</body>
+
+</html>
