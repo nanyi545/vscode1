@@ -43,3 +43,18 @@ const n2 = new Ninja2();
 console.assert(typeof n2._skillLevel === "undefined", "We cannot access a 'private' property");
 console.assert(n2.skillLevel === 0, "The getter works fine!");
 n2.skillLevel=10;
+
+
+/**
+ * ch9.1 array
+ */
+
+let arr1 = ["a","b","c1"];
+let f1 = arr1.find((obj,ind)=>{
+    // return ind===1
+    return obj==="a"
+})
+console.log(f1)
+
+let sub1 = arr1.filter(e=>{return (e==="a")||(e==="c1")});
+console.log(sub1)
