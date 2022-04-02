@@ -2,7 +2,6 @@
  * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Introduction
  * 
  * 
- * 
 ------------------------------------------------------------------------
 JavaScript contains a standard library of objects, such as Array, Date, and Math, and a core set of language elements such as operators, control structures, and statements. Core JavaScript can be extended for a variety of purposes by supplementing it with additional objects; for example:
 
